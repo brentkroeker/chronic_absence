@@ -34,12 +34,31 @@ public partial class LevelManager : Node2D
 	private bool FoundSolution()
 	{
 		Transform2D shapeTransform = this.shape.Transform;
+		float positionErrrorMargin = 2;
+		float rotationErrorMargin = 0.01f;
+		float scaleErrorMargin = 0.05f;
+		float skewErrorMargin = 0.005f;
 
-		return shapeTransform.Origin == this.originSolution
-				&& shapeTransform.Scale == this.scaleSolution
-				&& shapeTransform.Rotation == this.rotationSolution
-				&& shapeTransform.Skew == this.skewSolution;
+        bool originMatches = shapeTransform.Origin.X >= this.originSolution.X - positionErrrorMargin
+						  && shapeTransform.Origin.X <= this.originSolution.X + positionErrrorMargin
+						  && shapeTransform.Origin.Y >= this.originSolution.Y - positionErrrorMargin
+						  && shapeTransform.Origin.Y <= this.originSolution.Y + positionErrrorMargin;
 
+		bool rotationMatches = shapeTransform.Rotation / Mathf.Tau >= this.rotationSolution - rotationErrorMargin
+                            && shapeTransform.Rotation / Mathf.Tau <= this.rotationSolution + rotationErrorMargin;
+
+		bool scaleMatches = shapeTransform.Scale.X >= this.scaleSolution.X - scaleErrorMargin
+						 && shapeTransform.Scale.X <= this.scaleSolution.X + scaleErrorMargin
+						 && shapeTransform.Scale.Y >= this.scaleSolution.Y - scaleErrorMargin
+						 && shapeTransform.Scale.Y <= this.scaleSolution.Y + scaleErrorMargin;
+
+		bool skewMatches = shapeTransform.Skew / Mathf.Tau >= this.skewSolution - skewErrorMargin
+						&& shapeTransform.Skew / Mathf.Tau <= this.skewSolution + skewErrorMargin;
+
+		return originMatches
+			&& scaleMatches
+			&& rotationMatches
+			&& skewMatches;
     }
 
 	private void LoadSolution()
