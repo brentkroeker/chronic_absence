@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://tuf0xrrm5jk1"]
+
+[ext_resource type="PackedScene" uid="uid://dytl1xt606p6e" path="res://assets/shapes/square.tscn" id="1_gjybx"]
+
+[node name="main" type="Node2D"]
+
+[node name="Polygon2D" parent="." instance=ExtResource("1_gjybx")]
+position = Vector2(490, 270)

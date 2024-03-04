@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dytl1xt606p6e"]
+
+[ext_resource type="Script" path="res://scripts/ShapeController.cs" id="1_645k2"]
+
+[node name="Square" type="Polygon2D"]
+offset = Vector2(-49, -47)
+polygon = PackedVector2Array(0, 0, 0, 100, 100, 100, 100, 0)
+script = ExtResource("1_645k2")
