@@ -17,7 +17,7 @@ public partial class ShapeController : Polygon2D
 
     public override void _Ready()
 	{
-        shapeControls = GetNode<ShapeControls>("../ShapeControls");
+        shapeControls = GetParent().GetParent<GameManager>().ShapeControls;
 
         shapeControls.Ready += ShapeControls_Ready;
 	}

@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public partial class LevelManager : Node2D
+public partial class Level : Node2D
 {
 	// Get current level name
 	// Get level solution
@@ -61,6 +61,7 @@ public partial class LevelManager : Node2D
 			&& skewMatches;
     }
 
+	// MOVE TO LevelList
 	private void LoadSolution()
 	{
 		string jsonText = FileAccess.GetFileAsString("res://solutions.json");
@@ -81,5 +82,10 @@ public partial class LevelManager : Node2D
 		{
 			throw new Exception("LevelManager::GetSolution()::JSON Parse Error");
 		}
+	}
+
+	protected virtual void OnSolutionFound()
+	{
+		// Add event functionality
 	}
 }
