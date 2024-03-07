@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc0k261g2pp0p"]
+[gd_scene load_steps=4 format=3 uid="uid://cc0k261g2pp0p"]
 
 [ext_resource type="PackedScene" uid="uid://dytl1xt606p6e" path="res://assets/shapes/square.tscn" id="1_jmalx"]
 [ext_resource type="Script" path="res://scripts/LevelManager.cs" id="1_p6bur"]
+[ext_resource type="PackedScene" uid="uid://bgp4shafk6t3d" path="res://shape_controls.tscn" id="3_wgf8c"]
 
 [node name="level_01" type="Node2D"]
 script = ExtResource("1_p6bur")
@@ -22,3 +23,5 @@ script = null
 [node name="Shape_User" parent="." instance=ExtResource("1_jmalx")]
 position = Vector2(320, 360)
 color = Color(0.964706, 0.631373, 0.231373, 1)
+
+[node name="ShapeControls" parent="." instance=ExtResource("3_wgf8c")]

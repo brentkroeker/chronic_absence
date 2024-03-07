@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 
 public partial class LevelList : Node
 {
@@ -18,11 +17,19 @@ public partial class LevelList : Node
         "level_10"
     };
 
-    public static Resource GetNextLevel(string currentLevelName)
+    public static LevelManager GetNextLevel(string currentLevelName)
     {
         int nextLevelIndex = Array.IndexOf(ORDER, currentLevelName) + 1;
         string nextLevel = $"{ORDER[nextLevelIndex]}.tscn";
 
-        return GD.Load(nextLevel);
+        return GD.Load<LevelManager>(nextLevel);
+    }
+
+    public static LevelManager GetLevel(string levelName)
+    {
+        int levelIndex = Array.IndexOf(ORDER, levelName);
+        string level = $"{ORDER[levelIndex]}.tscn";
+
+        return GD.Load<LevelManager>(level);
     }
 }
