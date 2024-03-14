@@ -2,8 +2,6 @@ using Godot;
 
 public partial class ShapeController : Polygon2D
 {
-    private ShapeControls shapeControls;
-
     private float changeRate = 0.02f;
     private float positionXChangeRate = 0;
     private float positionYChangeRate = 0;
@@ -15,12 +13,34 @@ public partial class ShapeController : Polygon2D
 
     public bool disableControls = false;
 
+    public ShapeControls ShapeControls
+    {
+        get;
+        set;
+    }
+
     public override void _Ready()
 	{
-        shapeControls = GetParent().GetParent<GameManager>().ShapeControls;
+        ShapeControls = GetParent().GetNode<ShapeControls>("ShapeControls");
+        ShapeControls.Ready += ShapeControls_Ready;
+    }
 
-        shapeControls.Ready += ShapeControls_Ready;
-	}
+    private void SetRotationPoint()
+    {
+        Vector2 averagePoint = new Vector2();
+
+        foreach (Vector2 point in this.Polygon)
+        {
+            averagePoint += point;
+        }
+
+        averagePoint /=  -this.Polygon.Length;
+
+        this.Offset = averagePoint;
+        Transform2D transform = this.Transform;
+        transform.Origin -= this.Offset;
+        this.Transform = transform;
+    }
 
     private void ResetChangeRates()
     {
@@ -31,28 +51,28 @@ public partial class ShapeController : Polygon2D
         scaleYChangeRate = 0;
         skewXChangeRate = 0;
         skewYChangeRate = 0;
-}
+    }
 
-    private void ShapeControls_Ready()
+    public void ShapeControls_Ready()
     {
-        shapeControls.SldrPositionX.ValueChanged += SldrPositionX_ValueChanged;
-        shapeControls.SldrPositionY.ValueChanged += SldrPositionY_ValueChanged;
+        ShapeControls.SldrPositionX.ValueChanged += SldrPositionX_ValueChanged;
+        ShapeControls.SldrPositionY.ValueChanged += SldrPositionY_ValueChanged;
 
-        shapeControls.SldrRotation.ValueChanged += SldrRotation_ValueChanged;
+        ShapeControls.SldrRotation.ValueChanged += SldrRotation_ValueChanged;
 
-        shapeControls.SldrScaleX.ValueChanged += SldrScaleX_ValueChanged;
-        shapeControls.SldrScaleY.ValueChanged += SldrScaleY_ValueChanged;
+        ShapeControls.SldrScaleX.ValueChanged += SldrScaleX_ValueChanged;
+        ShapeControls.SldrScaleY.ValueChanged += SldrScaleY_ValueChanged;
 
-        shapeControls.SldrSkewX.ValueChanged += SldrSkewX_ValueChanged;
-        shapeControls.SldrSkewY.ValueChanged += SldrSkewY_ValueChanged;
+        ShapeControls.SldrSkewX.ValueChanged += SldrSkewX_ValueChanged;
+        ShapeControls.SldrSkewY.ValueChanged += SldrSkewY_ValueChanged;
 
-        shapeControls.SldrPositionX.DragEnded += Slider_DragEnded;
-        shapeControls.SldrPositionY.DragEnded += Slider_DragEnded;
-        shapeControls.SldrRotation.DragEnded += Slider_DragEnded;
-        shapeControls.SldrScaleX.DragEnded += Slider_DragEnded;
-        shapeControls.SldrScaleY.DragEnded += Slider_DragEnded;
-        shapeControls.SldrSkewX.DragEnded += Slider_DragEnded;
-        shapeControls.SldrSkewY.DragEnded += Slider_DragEnded;
+        ShapeControls.SldrPositionX.DragEnded += Slider_DragEnded;
+        ShapeControls.SldrPositionY.DragEnded += Slider_DragEnded;
+        ShapeControls.SldrRotation.DragEnded += Slider_DragEnded;
+        ShapeControls.SldrScaleX.DragEnded += Slider_DragEnded;
+        ShapeControls.SldrScaleY.DragEnded += Slider_DragEnded;
+        ShapeControls.SldrSkewX.DragEnded += Slider_DragEnded;
+        ShapeControls.SldrSkewY.DragEnded += Slider_DragEnded;
     }
 
     private void Slider_DragEnded(bool valueChanged)
@@ -62,7 +82,7 @@ public partial class ShapeController : Polygon2D
 
     private void SldrSkewY_ValueChanged(double value)
     {
-        if (shapeControls.IsDragging)
+        if (ShapeControls.IsDragging)
         {
             skewYChangeRate = (float)value;
         }
@@ -70,7 +90,7 @@ public partial class ShapeController : Polygon2D
 
     private void SldrSkewX_ValueChanged(double value)
     {
-        if (shapeControls.IsDragging)
+        if (ShapeControls.IsDragging)
         {
             skewXChangeRate = (float)value;
         }
@@ -78,7 +98,7 @@ public partial class ShapeController : Polygon2D
 
     private void SldrScaleY_ValueChanged(double value)
     {
-        if (shapeControls.IsDragging)
+        if (ShapeControls.IsDragging)
         {
             scaleYChangeRate = 1 + (float)value / 100;
         }
@@ -86,7 +106,7 @@ public partial class ShapeController : Polygon2D
 
     private void SldrScaleX_ValueChanged(double value)
     {
-        if (shapeControls.IsDragging)
+        if (ShapeControls.IsDragging)
         {
             scaleXChangeRate = 1 + (float)value / 100;
         }
@@ -94,10 +114,10 @@ public partial class ShapeController : Polygon2D
 
     private void SldrRotation_ValueChanged(double value)
     {
-        if (shapeControls.IsDragging)
+        if (ShapeControls.IsDragging)
         {
-            float steps = (float)shapeControls.SldrRotation.MaxValue / (float)shapeControls.SldrRotation.Step;
-            float tauDenomination = 1000 - Mathf.Abs((float)value) * steps * 4;
+            float steps = (float)ShapeControls.SldrRotation.MaxValue / (float)ShapeControls.SldrRotation.Step;
+            float tauDenomination = Mathf.Lerp(2000 - Mathf.Abs((float)value) * steps * 4, 0, 0.25f);
 
             rotationChangeRate = value == 0 ? (float)value : Mathf.Tau / tauDenomination * Mathf.Sign(value);
         }
@@ -105,7 +125,7 @@ public partial class ShapeController : Polygon2D
 
     private void SldrPositionY_ValueChanged(double value)
     {
-        if (shapeControls.IsDragging)
+        if (ShapeControls.IsDragging)
         {
             positionYChangeRate = (float)value * 1.25f;
         }
@@ -113,7 +133,7 @@ public partial class ShapeController : Polygon2D
 
     private void SldrPositionX_ValueChanged(double value)
     {
-        if (shapeControls.IsDragging)
+        if (ShapeControls.IsDragging)
         {
             positionXChangeRate = (float)value * 1.25f;
         }
@@ -123,7 +143,7 @@ public partial class ShapeController : Polygon2D
 	{
         Transform2D transform = this.Transform;
 
-        if (shapeControls.IsDragging)
+        if (ShapeControls.IsDragging && !disableControls)
         {
             if (rotationChangeRate != 0 && !Mathf.IsInf(rotationChangeRate))
             {
@@ -144,10 +164,12 @@ public partial class ShapeController : Polygon2D
             if (scaleXChangeRate != 0)
             {
                 transform.X *= scaleXChangeRate;
+
             }
             if (scaleYChangeRate != 0)
             {
                 transform.Y *= scaleYChangeRate;
+
             }
 
             if (skewXChangeRate != 0)
@@ -163,7 +185,7 @@ public partial class ShapeController : Polygon2D
         // Not exceeding boundaries
         float viewportWidth = GetViewportRect().Size.X;
         float viewportHeight = GetViewportRect().Size.Y;
-        GD.Print(transform);
+
         if (transform.Origin.X >= viewportWidth || transform.Origin.X <= 0 ||
             transform.Origin.Y >= viewportHeight || transform.Origin.Y <= 0)
         {
@@ -190,7 +212,7 @@ public partial class ShapeController : Polygon2D
         }
 
 
-        if (!disableControls)
+        if (false && !disableControls)
         {
             // Position
             if (Input.IsActionPressed("debug_pos_left"))

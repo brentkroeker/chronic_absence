@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgp4shafk6t3d"]
+[gd_scene load_steps=11 format=3 uid="uid://bgp4shafk6t3d"]
 
 [ext_resource type="Script" path="res://scripts/ShapeControls.cs" id="1_13big"]
+[ext_resource type="FontFile" uid="uid://pxxg71yhgibr" path="res://assets/fonts/LTSuperior-ExtraBold.otf" id="2_1juga"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0so48"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqqx1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axx5i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yl5rm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_upoa4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ywf5f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7gu6r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w4jwu"]
 
 [node name="ShapeControls" type="Control"]
 layout_mode = 3
@@ -13,10 +31,10 @@ script = ExtResource("1_13big")
 
 [node name="pnlPosition" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 460.0
+offset_top = 530.0
 offset_right = 330.0
-offset_bottom = 690.0
+offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0so48")
 
 [node name="sldrPositionX" type="HSlider" parent="pnlPosition"]
 layout_mode = 0
@@ -24,6 +42,7 @@ offset_left = 20.0
 offset_top = 130.0
 offset_right = 230.0
 offset_bottom = 146.0
+theme_override_styles/slider = SubResource("StyleBoxEmpty_dqqx1")
 min_value = -1.0
 max_value = 1.0
 step = 0.005
@@ -32,9 +51,10 @@ scrollable = false
 [node name="sldrPositionY" type="VSlider" parent="pnlPosition"]
 layout_mode = 0
 offset_left = 260.0
-offset_top = 60.0
+offset_top = 20.0
 offset_right = 276.0
-offset_bottom = 210.0
+offset_bottom = 170.0
+theme_override_styles/slider = SubResource("StyleBoxEmpty_axx5i")
 min_value = -1.0
 max_value = 1.0
 step = 0.005
@@ -42,27 +62,30 @@ scrollable = false
 
 [node name="txtPosition" type="RichTextLabel" parent="pnlPosition"]
 layout_mode = 0
-offset_left = 90.0
+offset_left = 10.0
 offset_top = 10.0
-offset_right = 220.0
+offset_right = 150.0
 offset_bottom = 60.0
-theme_override_font_sizes/normal_font_size = 32
+theme_override_fonts/normal_font = ExtResource("2_1juga")
+theme_override_font_sizes/normal_font_size = 36
 text = "Position"
 scroll_active = false
 
 [node name="pnlRotation" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 350.0
-offset_top = 460.0
-offset_right = 600.0
-offset_bottom = 690.0
+offset_left = 650.0
+offset_top = 530.0
+offset_right = 940.0
+offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0so48")
 
 [node name="sldrRotation" type="HSlider" parent="pnlRotation"]
 layout_mode = 0
-offset_left = 20.0
+offset_left = 30.0
 offset_top = 130.0
-offset_right = 230.0
+offset_right = 240.0
 offset_bottom = 146.0
+theme_override_styles/slider = SubResource("StyleBoxEmpty_yl5rm")
 min_value = -1.0
 max_value = 1.0
 step = 0.005
@@ -71,20 +94,22 @@ scrollable = false
 
 [node name="txtRotation" type="RichTextLabel" parent="pnlRotation"]
 layout_mode = 0
-offset_left = 60.0
+offset_left = 10.0
 offset_top = 10.0
-offset_right = 200.0
+offset_right = 180.0
 offset_bottom = 60.0
-theme_override_font_sizes/normal_font_size = 32
+theme_override_fonts/normal_font = ExtResource("2_1juga")
+theme_override_font_sizes/normal_font_size = 36
 text = "Rotation"
 scroll_active = false
 
 [node name="pnlScale" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 620.0
-offset_top = 460.0
-offset_right = 920.0
-offset_bottom = 690.0
+offset_left = 330.0
+offset_top = 530.0
+offset_right = 650.0
+offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0so48")
 
 [node name="sldrScaleX" type="HSlider" parent="pnlScale"]
 layout_mode = 0
@@ -92,6 +117,7 @@ offset_left = 20.0
 offset_top = 130.0
 offset_right = 230.0
 offset_bottom = 146.0
+theme_override_styles/slider = SubResource("StyleBoxEmpty_upoa4")
 min_value = -1.0
 max_value = 1.0
 step = 0.005
@@ -100,29 +126,32 @@ scrollable = false
 [node name="sldrScaleY" type="VSlider" parent="pnlScale"]
 layout_mode = 0
 offset_left = 260.0
-offset_top = 60.0
+offset_top = 20.0
 offset_right = 276.0
-offset_bottom = 210.0
+offset_bottom = 170.0
+theme_override_styles/slider = SubResource("StyleBoxEmpty_ywf5f")
 min_value = -1.0
 max_value = 1.0
 step = 0.005
+scrollable = false
 
 [node name="txtScale" type="RichTextLabel" parent="pnlScale"]
 layout_mode = 0
-offset_left = 110.0
 offset_top = 10.0
-offset_right = 190.0
+offset_right = 100.0
 offset_bottom = 60.0
-theme_override_font_sizes/normal_font_size = 32
+theme_override_fonts/normal_font = ExtResource("2_1juga")
+theme_override_font_sizes/normal_font_size = 36
 text = "Scale"
 scroll_active = false
 
 [node name="pnlSkew" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 940.0
-offset_top = 460.0
-offset_right = 1250.0
-offset_bottom = 690.0
+offset_top = 530.0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0so48")
 
 [node name="sldrSkewX" type="HSlider" parent="pnlSkew"]
 layout_mode = 0
@@ -130,6 +159,7 @@ offset_left = 30.0
 offset_top = 130.0
 offset_right = 240.0
 offset_bottom = 146.0
+theme_override_styles/slider = SubResource("StyleBoxEmpty_7gu6r")
 min_value = -0.05
 max_value = 0.05
 step = 0.001
@@ -139,20 +169,23 @@ scrollable = false
 [node name="sldrSkewY" type="VSlider" parent="pnlSkew"]
 layout_mode = 0
 offset_left = 270.0
-offset_top = 60.0
+offset_top = 20.0
 offset_right = 286.0
-offset_bottom = 210.0
+offset_bottom = 170.0
+theme_override_styles/slider = SubResource("StyleBoxEmpty_w4jwu")
 min_value = -0.05
 max_value = 0.05
 step = 0.001
 value = -0.03
+scrollable = false
 
 [node name="txtSkew" type="RichTextLabel" parent="pnlSkew"]
 layout_mode = 0
-offset_left = 110.0
+offset_left = 10.0
 offset_top = 10.0
-offset_right = 190.0
+offset_right = 120.0
 offset_bottom = 60.0
-theme_override_font_sizes/normal_font_size = 32
+theme_override_fonts/normal_font = ExtResource("2_1juga")
+theme_override_font_sizes/normal_font_size = 36
 text = "Skew"
 scroll_active = false

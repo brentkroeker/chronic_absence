@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc1q6k4lbssm0"]
+
+[ext_resource type="Script" path="res://scripts/Level.cs" id="1_kjqi6"]
+[ext_resource type="PackedScene" uid="uid://dytl1xt606p6e" path="res://assets/shapes/square.tscn" id="2_snjxb"]
+[ext_resource type="Script" path="res://scripts/CircleWipe.cs" id="3_2p45f"]
+[ext_resource type="PackedScene" uid="uid://bgp4shafk6t3d" path="res://shape_controls.tscn" id="4_ab2bl"]
+
+[node name="level_05" type="Node2D"]
+script = ExtResource("1_kjqi6")
+
+[node name="Shape_Background" parent="." instance=ExtResource("2_snjxb")]
+position = Vector2(860, 280)
+rotation = -2.92517
+scale = Vector2(0.412, 1.413)
+skew = 1.08909
+color = Color(0.576471, 0.913725, 0.72549, 1)
+offset = Vector2(0, 0)
+invert_enabled = true
+invert_border = 4400.0
+polygon = PackedVector2Array(60, -130, 10, -180, -30, -180, -60, -140, -60, -90, -100, -40, -20, 0, -50, 60, -120, 20, -60, 130, -90, 150, 0, 150, -10, 130, 140, 130, 130, 150, 210, 150, 180, 130, 240, 20, 170, 60, 140, 0, 220, -40, 180, -90, 180, -140, 150, -180, 110, -180)
+script = null
+
+[node name="Shape_Absence" parent="." instance=ExtResource("2_snjxb")]
+position = Vector2(860, 280)
+rotation = -2.92517
+scale = Vector2(0.412, 1.413)
+skew = 1.08909
+color = Color(0, 0.52549, 0.937255, 1)
+offset = Vector2(0, 0)
+polygon = PackedVector2Array(60, -130, 10, -180, -30, -180, -60, -140, -60, -90, -100, -40, -20, 0, -50, 60, -120, 20, -60, 130, -90, 150, 0, 150, -10, 130, 140, 130, 130, 150, 210, 150, 180, 130, 240, 20, 170, 60, 140, 0, 220, -40, 180, -90, 180, -140, 150, -180, 110, -180)
+script = null
+
+[node name="Shape_User" parent="." instance=ExtResource("2_snjxb")]
+position = Vector2(240, 276.364)
+scale = Vector2(0.757576, 0.757576)
+color = Color(0.6, 0.403922, 0.643137, 1)
+offset = Vector2(0, 0)
+polygon = PackedVector2Array(60, -130, 10, -180, -30, -180, -60, -140, -60, -90, -100, -40, -20, 0, -50, 60, -120, 20, -60, 130, -90, 150, 0, 150, -10, 130, 140, 130, 130, 150, 210, 150, 180, 130, 240, 20, 170, 60, 140, 0, 220, -40, 180, -90, 180, -140, 150, -180, 110, -180)
+
+[node name="Circle_Wipe" type="Node2D" parent="."]
+script = ExtResource("3_2p45f")
+
+[node name="ShapeControls" parent="." instance=ExtResource("4_ab2bl")]

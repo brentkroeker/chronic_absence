@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://vrc0ejsftpkm"]
+
+[ext_resource type="FontFile" uid="uid://ca63q72um3ix1" path="res://assets/fonts/LTSuperior-Bold.otf" id="1_1cxje"]
+[ext_resource type="FontFile" uid="uid://pxxg71yhgibr" path="res://assets/fonts/LTSuperior-ExtraBold.otf" id="1_wck8x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5cfu"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_s47pe"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_w8juu"]
+events = [SubResource("InputEventKey_s47pe")]
+
+[node name="menu_main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background_Color" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Orange_Color" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 980.0
+offset_top = 20.0
+offset_right = 1260.0
+offset_bottom = 300.0
+color = Color(0.882353, 0.556863, 0.137255, 1)
+
+[node name="Orange_Color2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 980.0
+offset_top = 20.0
+offset_right = 1260.0
+offset_bottom = 300.0
+color = Color(0.882353, 0.556863, 0.137255, 1)
+
+[node name="Begin_Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 440.0
+offset_right = 860.0
+offset_bottom = 623.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.882353, 0.556863, 0.137255, 1)
+theme_override_colors/font_hover_color = Color(1, 0.607843, 0.796078, 1)
+theme_override_colors/font_focus_color = Color(0, 0.52549, 0.937255, 1)
+theme_override_fonts/font = ExtResource("1_wck8x")
+theme_override_font_sizes/font_size = 128
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j5cfu")
+shortcut = SubResource("Shortcut_w8juu")
+text = "Begin"
+flat = true
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 3.0
+offset_right = 704.0
+offset_bottom = 423.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_1cxje")
+theme_override_font_sizes/normal_font_size = 162
+text = "Chronic Absence"

@@ -78,7 +78,7 @@ public partial class ShapeControls : Control
         }
     }
 
-    private void ResetSliders()
+    public void ResetSliders()
     {
         SldrPositionX.Value = 0;
         SldrPositionY.Value = 0;
@@ -87,6 +87,27 @@ public partial class ShapeControls : Control
         SldrScaleY.Value = 0;
         SldrSkewX.Value = 0;
         SldrSkewY.Value = 0;
+    }
+
+    public void ToggleDisableSliders()
+    {
+        MouseFilterEnum mouseFilter = SldrPositionX.Editable ? MouseFilterEnum.Ignore : MouseFilterEnum.Stop;
+
+        SldrPositionX.MouseFilter = mouseFilter;
+        SldrPositionY.MouseFilter = mouseFilter;
+        SldrRotation.MouseFilter = mouseFilter;
+        SldrScaleX.MouseFilter = mouseFilter;
+        SldrScaleY.MouseFilter = mouseFilter;
+        SldrSkewX.MouseFilter = mouseFilter;
+        SldrSkewY.MouseFilter = mouseFilter;
+
+        SldrPositionX.Editable = !SldrPositionX.Editable;
+        SldrPositionY.Editable = !SldrPositionY.Editable;
+        SldrRotation.Editable = !SldrRotation.Editable;
+        SldrScaleX.Editable = !SldrScaleX.Editable;
+        SldrScaleY.Editable = !SldrScaleY.Editable;
+        SldrSkewX.Editable = !SldrSkewX.Editable;
+        SldrSkewY.Editable = !SldrSkewY.Editable;
     }
 
     private void Slider_ValueChanged(double value)
@@ -132,8 +153,8 @@ public partial class ShapeControls : Control
         }
         else
         {
-            IsDragging = false;
         }
+            IsDragging = false;
     }
 
     private void Slider_DragStarted()

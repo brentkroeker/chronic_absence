@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkvy7grq4hqdm"]
+
+[ext_resource type="FontFile" uid="uid://pxxg71yhgibr" path="res://assets/fonts/LTSuperior-ExtraBold.otf" id="1_838u2"]
+[ext_resource type="FontFile" uid="uid://ca63q72um3ix1" path="res://assets/fonts/LTSuperior-Bold.otf" id="2_ue72e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w8np0"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_s47pe"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_kvltm"]
+events = [SubResource("InputEventKey_s47pe")]
+
+[node name="end_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background_Color" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.6, 0.403922, 0.643137, 1)
+
+[node name="Orange_Color" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 980.0
+offset_top = 20.0
+offset_right = 1260.0
+offset_bottom = 300.0
+color = Color(0.882353, 0.556863, 0.137255, 1)
+
+[node name="Begin_Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 390.0
+offset_right = 1181.0
+offset_bottom = 550.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.882353, 0.556863, 0.137255, 1)
+theme_override_colors/font_hover_color = Color(1, 0.607843, 0.796078, 1)
+theme_override_colors/font_focus_color = Color(0, 0.52549, 0.937255, 1)
+theme_override_fonts/font = ExtResource("1_838u2")
+theme_override_font_sizes/font_size = 128
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w8np0")
+shortcut = SubResource("Shortcut_kvltm")
+text = "Begin again"
+flat = true
+
+[node name="Exit_Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 540.0
+offset_right = 727.0
+offset_bottom = 700.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.882353, 0.556863, 0.137255, 1)
+theme_override_colors/font_hover_color = Color(1, 0.607843, 0.796078, 1)
+theme_override_colors/font_focus_color = Color(0, 0.52549, 0.937255, 1)
+theme_override_fonts/font = ExtResource("1_838u2")
+theme_override_font_sizes/font_size = 128
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w8np0")
+shortcut = SubResource("Shortcut_kvltm")
+text = "Exit"
+flat = true
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 3.0
+offset_right = 410.0
+offset_bottom = 530.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_ue72e")
+theme_override_font_sizes/normal_font_size = 162
+text = "You have won"

@@ -8,16 +8,11 @@ public partial class LevelUtility : Node
 
     public static readonly string[] ORDER =
     {
-        "level_01", 
+        "level_01",
         "level_02",
         "level_03",
         "level_04",
-        "level_05",
-        "level_06",
-        "level_07",
-        "level_08",
-        "level_09",
-        "level_10"
+        "level_05"
     };
 
     private static string GetLevelPath(string levelName)
@@ -48,19 +43,21 @@ public partial class LevelUtility : Node
         return successful;
     }
 
-    public static Resource GetLoadedLevel()
+    public static Level GetLoadedLevel()
     {
-        Resource level;
+        Level level;
 
         if (GetLoadStatus() == ResourceLoader.ThreadLoadStatus.Loaded)
         {
-            level = ResourceLoader.LoadThreadedGet(lastResourcePath);
+            level = (Level)((PackedScene)ResourceLoader.LoadThreadedGet(lastResourcePath)).Instantiate();
             lastResourcePath = "";
         }
         else
         {
-            level = new Resource();
+            level = new Level();
         }
+
+        loadingResource = false;
 
         return level;
     }
@@ -68,30 +65,13 @@ public partial class LevelUtility : Node
     public static string GetNextLevelName(string currentLevelName)
     {
         int nextLevelIndex = Array.IndexOf(ORDER, currentLevelName) + 1;
-        
-        return ORDER[nextLevelIndex];
+
+        return nextLevelIndex == ORDER.Length ? "N/A" : ORDER[nextLevelIndex];
     }
 
     public static ResourceLoader.ThreadLoadStatus GetLoadStatus()
     {
         return lastResourcePath != "" ? ResourceLoader.LoadThreadedGetStatus(lastResourcePath)
                                       : ResourceLoader.ThreadLoadStatus.InvalidResource;
-    }
-
-
-    //////////////
-    public static Level GetNextLevel(string currentLevelName)
-    {
-        int nextLevelIndex = Array.IndexOf(ORDER, currentLevelName) + 1;
-        string nextLevel = $"res://levels/{ORDER[nextLevelIndex]}.tscn";
-
-        return GD.Load<Level>(nextLevel);
-    }
-
-    public static Level GetLevel(string levelName)
-    {
-        string level = $"res://levels/{levelName}.tscn";
-
-        return GD.Load<Level>(level);
     }
 }

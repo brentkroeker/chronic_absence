@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxd0r6vsvkmsu"]
+
+[ext_resource type="Script" path="res://scripts/Level.cs" id="1_njksm"]
+[ext_resource type="PackedScene" uid="uid://dytl1xt606p6e" path="res://assets/shapes/square.tscn" id="2_l7gxi"]
+[ext_resource type="Script" path="res://scripts/CircleWipe.cs" id="3_bmkub"]
+[ext_resource type="PackedScene" uid="uid://bgp4shafk6t3d" path="res://shape_controls.tscn" id="4_7wom7"]
+
+[node name="level_04" type="Node2D"]
+script = ExtResource("1_njksm")
+
+[node name="Shape_Background" parent="." instance=ExtResource("2_l7gxi")]
+position = Vector2(820, 250)
+skew = 0.872665
+color = Color(0, 0.52549, 0.937255, 1)
+offset = Vector2(0, 0)
+invert_enabled = true
+invert_border = 2250.0
+polygon = PackedVector2Array(50, -130, -110, -10, -40, 160, 140, 160, 210, -10)
+script = null
+
+[node name="Shape_Absence" parent="." instance=ExtResource("2_l7gxi")]
+position = Vector2(820, 250)
+skew = 0.872665
+color = Color(1, 0.607843, 0.796078, 1)
+offset = Vector2(0, 0)
+polygon = PackedVector2Array(50, -130, -110, -10, -40, 160, 140, 160, 210, -10)
+script = null
+
+[node name="Shape_User" parent="." instance=ExtResource("2_l7gxi")]
+position = Vector2(400, 250)
+color = Color(0.576471, 0.913725, 0.72549, 1)
+offset = Vector2(0, 0)
+polygon = PackedVector2Array(50, -130, -110, -10, -40, 160, 140, 160, 210, -10)
+
+[node name="Circle_Wipe" type="Node2D" parent="."]
+script = ExtResource("3_bmkub")
+
+[node name="ShapeControls" parent="." instance=ExtResource("4_7wom7")]
